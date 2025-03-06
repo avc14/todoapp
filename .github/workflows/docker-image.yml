@@ -22,3 +22,9 @@ jobs:
     
     - name: Push image to repo
       run: docker push ${{ secrets.DOCKER_USERNAME }}/todoapp:v1
+
+  k8s-deploy:
+    runs-on: self-hosted
+    steps:
+    - name: update deployment
+      run: kubectl set image deployment todoappdeployment todoappdeployment=todoapp:v1
