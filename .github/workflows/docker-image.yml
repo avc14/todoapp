@@ -32,4 +32,4 @@ jobs:
         export KUBECONFIG=kubeconfig.yaml
         
     - name: update deployment
-      run: kubectl set image deployment/todoappdeployment todoappdeployment=${{ secrets.DOCKER_USERNAME }}/todoapp:v1
+      run: kubectl set image -n todo-namespace deployment/todoappdeployment todoappdeployment=${{ secrets.DOCKER_USERNAME }}/todoapp:v1
