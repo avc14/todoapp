@@ -16,10 +16,10 @@ spec:
       - name: {{ .Values.appName }}
         image: practiceapp
         imagePullPolicy: IfNotPresent
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        #resources:
+        #  limits:
+        #    memory: "128Mi"
+        #    cpu: "500m"
         ports:
         - containerPort: 5000
         envFrom:
