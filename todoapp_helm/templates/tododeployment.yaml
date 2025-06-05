@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: {{ .Values.appName }}
-        image: amol0000/practiceapp
+        image: amol0000/practiceapp:v1
         imagePullPolicy: IfNotPresent
         #resources:
         #  limits:
