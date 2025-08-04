@@ -3,7 +3,7 @@ name: My first workflow
 on:
   push:
     paths-ignore:
-      - '.github/*'
+      - '.github/workflows/*'
     branches: [ "main" ]
 
 jobs:
