@@ -28,7 +28,9 @@ def lists ():
 	a1="active"
 	hostname=socket.gethostname()
 	return render_template('index.html',a1=a1,todos=todos_l,t=title,h=heading,hostname=hostname)
-
+@app.route("/name")
+def name():
+	return "hello"
 @app.route("/healthz")
 def healthcheck():
 	return "healthz", 200
