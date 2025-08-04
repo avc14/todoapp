@@ -1,30 +1,37 @@
 name: My first workflow
 
+# on means when the workflow will run
+#these are the events that can occur in github . so based on them jobs are triggered 
 on:
   push:
+    paths-ignore:
+      - .github/actions/*
     branches: [ "main" ]
-
+# jobs is group of steps commands that will do specific work.
 jobs:
   image_build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
     - name: checkout the code
       uses: actions/checkout@v4
     
     - name: login to docker repo
+      # uses: is used to include the other created actions.
       uses: docker/login-action@v3
-      with: 
+      with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     
     - name: Build the Docker image
+      # run is used to run the os commands.
       run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/todoapp:v1
     
     - name: Push image to repo
       run: docker push ${{ secrets.DOCKER_USERNAME }}/todoapp:v1
 
   k8s-deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+    needs: [ image_build ]
     steps:
     - name: set kubeconfig
       run: | 
