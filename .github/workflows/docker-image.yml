@@ -5,7 +5,7 @@ name: My first workflow
 on:
   push:
     paths-ignore:
-      - .github/actions/*
+      - '.github/workflows/*'
     branches: [ "main" ]
 # jobs is group of steps commands that will do specific work.
 jobs:
