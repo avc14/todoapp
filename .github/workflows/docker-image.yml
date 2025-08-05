@@ -3,8 +3,6 @@ name: My first workflow
 # on means when the workflow will run
 #these are the events that can occur in github . so based on them jobs are triggered 
 on:
-  schedule:
-    - cron: '0 */5 2 8 7' # minute hour day month day-of-week
   push:
     paths-ignore:
       - '.github/workflows/*'
