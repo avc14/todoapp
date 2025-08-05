@@ -3,11 +3,16 @@ name: My first workflow
 # on means when the workflow will run
 #these are the events that can occur in github . so based on them jobs are triggered 
 on:
+  schedule:
+    - cron: '0 */5 2 8 7' # minute hour day month day-of-week
   push:
     paths-ignore:
       - '.github/workflows/*'
     branches: [ "main" ]
+  issues:
+    types: [opened,edited, closed]
 # jobs is group of steps commands that will do specific work.
+
 jobs:
   image_build:
     runs-on: ubuntu-latest
@@ -29,14 +34,5 @@ jobs:
     - name: Push image to repo
       run: docker push ${{ secrets.DOCKER_USERNAME }}/todoapp:v1
 
-  k8s-deploy:
-    runs-on: ubuntu-latest
-    needs: [ image_build ]
-    steps:
-    - name: set kubeconfig
-      run: | 
-        echo "${{ secrets.KUBECONFIG }}" > kubeconfig.yaml
-        export KUBECONFIG=kubeconfig.yaml
-        
-    - name: update deployment
-      run: kubectl set image -n todo-namespace deployment/todoappdeployment todoappdeployment=${{ secrets.DOCKER_USERNAME }}/todoapp:v1
+    - name: Logout from docker repo
+      run: docker logout
