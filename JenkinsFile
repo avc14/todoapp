@@ -7,7 +7,7 @@ pipeline{
         buildDiscarder(logRotator(numToKeepStr: '20'))
     }
     environment {
-        
+
     }
     stages{
         stage('checkout'){
@@ -15,5 +15,5 @@ pipeline{
                 checkout scm
             }
         }
-    }
+    }   
 }
