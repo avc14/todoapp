@@ -15,5 +15,18 @@ pipeline{
                 checkout scm
             }
         }
+        stage('Lint') {
+            steps{
+                bat 'pip install flake8'
+                bat 'flake8 . --max-line-length=120'
+            }
+        }
+        stage('security scan') {
+            steps{
+                bat 'pip install bandit safety'
+                bat 'bandit -r .'
+                bat 'safety check -r requirements.txt --full-report'
+            }
+        }
     }   
 }
