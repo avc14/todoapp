@@ -1,13 +1,13 @@
 pipeline{
-    agent {any}
+    agent any
     options {
         timestamps()
-        disableCouncurrentBuilds()
+        disableConcurrentBuilds()
         timeout(time: 10, unit: 'MINUTES')
         buildDiscarder(logRotator(numToKeepStr: '20'))
     }
     environment {
-
+        IMAGE = "registry.company.com/python-service:${env.GIT_COMMIT}"
     }
     stages{
         stage('checkout'){
