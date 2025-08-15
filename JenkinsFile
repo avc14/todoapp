@@ -18,6 +18,7 @@ pipeline{
         stage('Lint') {
             steps{
                 bat 'pip install flake8'
+                bat 'autopep8 --in-place --aggressive --aggressive ./app.py'
                 bat 'flake8 . --max-line-length=120'
             }
         }

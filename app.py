@@ -133,7 +133,8 @@ def search():
 @app.route("/about")
 def about():
 	hostname=socket.gethostname()
-	return render_template('credits.html',t=title,h=heading,hostname=hostname)
+	return render_template('credits.html', t=title, h=heading, hostname=hostname)
+
 
 if __name__ == "__main__":
 	env = os.environ.get('FLASK_ENV', 'development')
