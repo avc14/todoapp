@@ -164,16 +164,16 @@ def search():
             if not todos_l:
                 return render_template(
                     'index.html',
-                    a2=a2,
+                    a2='a2',
                     todos=todos_l,
                     t=title,
                     h=heading,
                     error="No such ObjectId is present")
         except InvalidId as err:
-            pass
+            
             return render_template(
                 'index.html',
-                a2=a2,
+                a2='a2',
                 todos=todos_l,
                 t=title,
                 h=heading,
