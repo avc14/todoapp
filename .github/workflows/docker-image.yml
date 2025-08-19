@@ -6,6 +6,7 @@ on:
   push:
     paths-ignore:
       - '.github/workflows/*'
+      - '.github/JenkinsFile'
     branches: [ "main" ]
   issues:
     types: [opened,edited, closed]
